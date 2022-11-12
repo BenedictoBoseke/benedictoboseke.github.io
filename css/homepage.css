@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
 :root {
     --lightblue: #00F0FF;
@@ -68,8 +68,17 @@ nav>.nav-section {
     font-weight: 600;
 }
 
-#title-gradient {
-    line
+.nav-link {
+    position: relative;
+    color: white;
+    transition: .2s cubic-bezier(.90, .06, .15, .90);
+    transform: top linear 0.5s;
+}
+
+.nav-link:hover{
+    color: #64dbff;
+    transition: .2s cubic-bezier(.90, .06, .15, .90);
+    top: -1px;
 }
 
 #nav-link-section {
@@ -107,7 +116,7 @@ main {
 }
 
 
-div>h1 {
+div > h1 {
     animation: background-pan 5s linear infinite;
     font-size: 400%;
     word-spacing: -.5rem;
@@ -133,6 +142,7 @@ div>h1 {
     line-height: 1.5rem;
     font-weight: 500;
     padding-right: 5rem;
+    /* filter: drop-shadow(0 0 0.4rem white); */
 }
 
 .card-section {
@@ -225,4 +235,51 @@ div>h1 {
     opacity: 1;
     transform: translateY(0%);
     transition: opacity 0ms, transform 350ms cubic-bezier(.90, .06, .15, .90);
+}
+
+.work-section{
+    margin: 6.5rem;
+}
+
+.card-work-section{
+    border-radius: 2rem;
+    background-color: #1b1b1b;
+    width: auto;
+    height: 900px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    /* border: 1px solid red; */
+}
+
+.work-type {
+    opacity: 50%;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-block;
+    position: absolute;
+    left: 90px;
+    top: 75px;
+}
+
+.work-name {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    display: block;
+    position: absolute;
+    left: 90px;
+    top: 105px;
+    font-size: 45px;
+}
+
+.work-image {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    height: 85%;
 }
