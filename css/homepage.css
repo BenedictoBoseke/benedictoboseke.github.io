@@ -32,10 +32,23 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: #141414;
+    /* padding-left: 20px;
+    padding-right: 20px; */
 }
 
 nav {
     display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #141414;
+    z-index: 9999;
+
+    background: rgba(20, 20, 20, 0.03);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(7.4px);
     /* border-bottom: 1px solid rgb(39, 39, 39); */
 }
 
@@ -47,15 +60,21 @@ nav>.nav-section {
     justify-content: center;
 }
 
-.fa-brands, .fa-solid {
+.fa-brands,
+.fa-solid {
     color: white;
     font-size: 1.5rem;
     margin: 0 2rem 0 2rem;
     transition: .2s ease;
 }
 
-.fa-linkedin:hover{
+.fa-linkedin:hover {
     color: #009ff5;
+    transition: .2s ease;
+}
+
+.fa-github:hover {
+    color: #8549ed;
     transition: .2s ease;
 }
 
@@ -75,7 +94,7 @@ nav>.nav-section {
     transform: top linear 0.5s;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: #64dbff;
     transition: .2s cubic-bezier(.90, .06, .15, .90);
     top: -1px;
@@ -91,6 +110,7 @@ nav>.nav-section {
 #nav-social-section {
     width: 100%;
     justify-content: flex-end;
+    margin-right: 60px;
 }
 
 main {
@@ -116,20 +136,18 @@ main {
 }
 
 
-div > h1 {
+div>h1 {
     animation: background-pan 5s linear infinite;
     font-size: 400%;
     word-spacing: -.5rem;
-    background: linear-gradient(
-        90deg,
+    background: linear-gradient(90deg,
             var(--darkblue),
             var(--lightdarkblue),
             var(--light2blue),
             var(--lightblue),
             var(--light2blue),
             var(--lightdarkblue),
-            var(--darkblue)
-            );
+            var(--darkblue));
     background-size: 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -161,13 +179,11 @@ div > h1 {
 }
 
 .card:before {
-    background: linear-gradient(
-        130deg,
-        transparent 0% 33%,
-        var(--v1) 66%,
-        var(--v2) 83.5%,
-        var(--v3) 100%
-    );
+    background: linear-gradient(130deg,
+            transparent 0% 33%,
+            var(--v1) 66%,
+            var(--v2) 83.5%,
+            var(--v3) 100%);
     background-position: 0% 0%;
     background-size: 300% 300%;
     content: "";
@@ -187,10 +203,8 @@ div > h1 {
 }
 
 .card-content {
-    background: radial-gradient(
-        rgba(168, 230, 255, 0.5),
-        transparent 8%
-    );
+    background: radial-gradient(rgba(168, 230, 255, 0.5),
+            transparent 8%);
     background-position: 0% 0%;
     background-size: 7vmin 7vmin;
     transition: background-position 350ms ease;
@@ -201,11 +215,12 @@ div > h1 {
     padding: 8vmin;
 }
 
-.card:hover > .card-content {
+.card:hover>.card-content {
     background-position: 10% 0%;
 }
 
-.card-title, .card-subtitle{
+.card-title,
+.card-subtitle {
     color: white;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
@@ -222,7 +237,7 @@ div > h1 {
     margin-top: 2vmin;
 }
 
-.card-subtitle-word{
+.card-subtitle-word {
     display: inline-block;
     margin: 0vmin 0.4vmin;
     position: relative;
@@ -231,21 +246,36 @@ div > h1 {
     opacity: 0;
 }
 
-.card:hover > .card-content > .card-subtitle > .card-subtitle-word {
+.card:hover>.card-content>.card-subtitle>.card-subtitle-word {
     opacity: 1;
     transform: translateY(0%);
     transition: opacity 0ms, transform 350ms cubic-bezier(.90, .06, .15, .90);
 }
 
-.work-section{
+.work-section,
+.edu-section {
     margin: 6.5rem;
 }
 
-.card-work-section{
+.card-work-section {
     border-radius: 2rem;
     background-color: #1b1b1b;
     width: auto;
     height: 900px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    /* border: 1px solid red; */
+}
+
+.card-work-section-2 {
+    border-radius: 2rem;
+    background-color: #1b1b1b;
+    width: auto;
+    height: 400px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -262,7 +292,7 @@ div > h1 {
     display: inline-block;
     position: absolute;
     left: 90px;
-    top: 75px;
+    top: 60px;
 }
 
 .work-name {
@@ -276,10 +306,41 @@ div > h1 {
     font-size: 45px;
 }
 
+.work-name-2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    display: block;
+    position: absolute;
+    left: 90px;
+    top: 105px;
+    font-size: 45px;
+}
+
+.work-name-2 {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    display: block;
+    position: absolute;
+    left: 90px;
+    top: 105px;
+    font-size: 30px;
+}
+
 .work-image {
     position: relative;
     display: inline-block;
     vertical-align: middle;
     width: auto;
     height: 85%;
+}
+
+.work-image-2 {
+    position: relative;
+    display: inline-block;
+    margin-left: 200px;
+    width: auto;
+    height: 70%;
+    border-radius: 1rem;
 }
