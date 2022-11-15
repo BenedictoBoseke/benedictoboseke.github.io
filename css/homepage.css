@@ -90,14 +90,11 @@ nav>.nav-section {
 .nav-link {
     position: relative;
     color: white;
-    transition: .2s cubic-bezier(.90, .06, .15, .90);
-    transform: top linear 0.5s;
+    transition: .2s ease;
 }
 
 .nav-link:hover {
-    color: #64dbff;
-    transition: .2s cubic-bezier(.90, .06, .15, .90);
-    top: -1px;
+    color: #2f89ff;
 }
 
 #nav-link-section {
@@ -257,7 +254,7 @@ div>h1 {
     margin: 6.5rem;
 }
 
-.card-work-section {
+.swing-work-section, .ui-work-section {
     border-radius: 2rem;
     background-color: #1b1b1b;
     width: auto;
@@ -271,7 +268,7 @@ div>h1 {
     /* border: 1px solid red; */
 }
 
-.card-work-section-2 {
+.database-work-section, .pentest-work-section {
     border-radius: 2rem;
     background-color: #1b1b1b;
     width: auto;
@@ -298,12 +295,21 @@ div>h1 {
 .work-name {
     font-family: 'Merriweather', serif;
     font-weight: 400;
-    font-size: 2rem;
     display: block;
     position: absolute;
     left: 90px;
     top: 105px;
     font-size: 45px;
+}
+
+.work-name-workout {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    display: block;
+    position: absolute;
+    left: 90px;
+    top: 105px;
+    font-size: 40px;
 }
 
 .work-name-2 {
@@ -328,7 +334,7 @@ div>h1 {
     font-size: 30px;
 }
 
-.work-image {
+.work-image-swing, .work-image-ui {
     position: relative;
     display: inline-block;
     vertical-align: middle;
@@ -336,11 +342,20 @@ div>h1 {
     height: 85%;
 }
 
-.work-image-2 {
+.work-image-database {
     position: relative;
     display: inline-block;
     margin-left: 200px;
     width: auto;
     height: 70%;
+    border-radius: 1rem;
+}
+
+.work-image-pentest {
+    position: relative;
+    display: inline-block;
+    margin-left: 200px;
+    width: auto;
+    height: 65%;
     border-radius: 1rem;
 }
