@@ -1,6 +1,8 @@
 # Feature inventory for review
 
-All 19 optional experiments are enabled. Use these IDs when choosing what to trim. Switches live in `scripts/features.js`; a local flag change needs only a reload.
+All 19 optional experiments start enabled. Use **Customize ✳** at the bottom right to change them in real time. All on, All off, and Reset make comparisons easy. Choices persist in this browser only; source defaults stay in `scripts/features.js`.
+
+The hamburger remains available inside the open menu. Click it again to close using the opening ellipse in reverse. Escape and section links also animate the close; reduced motion closes immediately. Rapid clicks can reverse an in-progress close.
 
 | ID | Added feature | What to try | Switch |
 |---|---|---|---|
@@ -34,6 +36,7 @@ The following supporting additions have no experiment flag; they can be edited n
 | F23 | Social/contact section and copy-site-link action | Original GitHub/LinkedIn destinations; usable URL fallback if clipboard permission is unavailable |
 | F24 | Accessibility and graceful fallback | Skip link; native dialogs/focus/Escape; keyboard rotation; live feedback; static artwork without WebGL; content without JS; paused offscreen/hidden rendering |
 | F25 | Metadata and asset repairs | Description/Open Graph, dynamic copyright year, corrected manifest/icon paths; removed missing space.css, empty Instagram destination, and external icon-kit requirement |
+| F26 | Temporary live customizer | All 19 switches, All on/off/Reset, feature View links, browser-local preferences, mobile bottom panel. Set `customizationEnabled = false` to remove it and ignore stored overrides |
 
 ## Adaptation from the REA reference
 
@@ -49,7 +52,7 @@ The following supporting additions have no experiment flag; they can be edited n
 | Photo collage / huge type / rolling statements | Original code/note collage, serif/grotesk typography, marquee |
 | Merchandise/sponsor/newsletter sections | Project links and original social destinations; no fake store, sponsor, signup service, or contact form |
 
-This is a broad working interpretation, not a reproduction of every Lando animation or technology. No reference code or assets are shipped. Runtime JavaScript is about 50 KB and CSS about 28 KB before compression; no runtime package/CDN/font dependencies. WebGL DPR is capped at 1.5 and rendering pauses offscreen/when hidden. Test packages are development-only.
+This is a broad working interpretation, not a reproduction of every Lando animation or technology. No reference code or assets are shipped. Runtime resources remain local, with no package/CDN/font dependencies. WebGL DPR is capped at 1.5 and rendering pauses offscreen/when hidden. Test packages are development-only.
 
 ## Evidence and checks
 
@@ -60,6 +63,6 @@ Reference: https://landonorris.com/ . Exact REA records:
 - `ev_1f75324c1587fe660e20b59e8f071a9ff81aa14bb512d2680dcd899e0c0a299e`: original Ben website and its missing stylesheet/manifest.
 - `ev_b59653ce5c3762996f71221524d389b722c7dfbba051ae8d7761f9f97997628e`: working preview flow, menu → section transition → Python filter → details/Escape → Ribbon → motion pause. All actions completed, with no captured page error.
 
-Final integration suite: **45 checks passed**, zero JavaScript errors and zero missing local resources. Syntax and `git diff --check` passed. Desktop 1440 × 1000 and mobile 390 × 844 screenshots were visually inspected. Viewport checks do not establish physical-device GPU performance or Core Web Vitals.
+Validation: **45 portfolio checks plus 31 customization/menu checks passed**. These cover live switches, persistence/reset, removal/restoration of sections, mobile panel sizing, matching close animation, rapid toggle reversal, focus restoration, and reduced motion. No captured JavaScript errors; no missing local resources in the portfolio suite. Syntax and `git diff --check` passed. Desktop 1440 × 1000 and mobile 390 × 844 screenshots were visually inspected. Viewport checks do not establish physical-device GPU performance or Core Web Vitals.
 
 Delivery: review branch/draft pull request plus local preview. No production merge or GitHub Pages deployment was performed during this initial feature-review pass.

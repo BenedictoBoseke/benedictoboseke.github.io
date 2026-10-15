@@ -1,0 +1,46 @@
+/* Temporary review UI, separate from the portfolio design. */
+#customize-toggle {
+  position: fixed; right: 22px; bottom: 20px; z-index: 65;
+  background: var(--ink); color: var(--paper); border: 1px solid var(--blue);
+  padding: 14px 18px; border-radius: 30px; font: 12px var(--mono);
+  box-shadow: 0 8px 30px #0003; min-height: 44px;
+}
+#customize-panel {
+  position: fixed; right: 18px; top: 105px; bottom: 80px; z-index: 64;
+  width: min(360px, calc(100vw - 36px)); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--paper); color: var(--ink); border: 1px solid #0b1c2433;
+  border-radius: 14px; box-shadow: 0 14px 70px #0004; padding: 22px;
+  scrollbar-width: thin; scroll-padding: 20px; color-scheme: light;
+}
+.customize-heading { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.customize-heading .tiny-label { font-size: 8px; }
+#customize-title { font: italic 30px/1.2 var(--serif); letter-spacing: -.04em; margin-top: 6px; }
+#customize-close { background: transparent; font-size: 25px; min-width: 44px; min-height: 44px; }
+.customize-intro { font-size: 12px; margin: 14px 0; color: #465a64; }
+.customize-actions { display: flex; gap: 8px; }
+.customize-actions button { flex: 1; background: var(--ink); color: var(--paper); border-radius: 5px; min-height: 40px; font-size: 12px; }
+.customize-actions #features-reset { background: var(--blue); color: var(--ink); }
+#customize-status { font: 10px/1.5 var(--mono); margin: 14px 0 22px; }
+#customize-options fieldset { border: 0; padding: 0; margin: 0 0 22px; min-width: 0; }
+#customize-options legend { font: bold 11px var(--mono); text-transform: uppercase; padding: 0 0 8px; }
+.customize-row { border-top: 1px solid #0b1c2422; padding: 12px 0 10px; }
+.customize-row label { display: flex; align-items: center; justify-content: space-between; gap: 14px; cursor: pointer; min-height: 44px; }
+.customize-copy { min-width: 0; }
+.customize-copy strong { font-size: 12px; font-weight: 600; display: block; }
+.customize-copy small { font-size: 11px; line-height: 1.4; color: #465a64; display: block; margin-top: 4px; }
+.customize-row input { appearance: none; flex: 0 0 38px; width: 38px; height: 23px; background: #b7bfc2; border-radius: 20px; position: relative; cursor: pointer; margin: 0; }
+.customize-row input:before { content: ''; position: absolute; top: 3px; left: 3px; height: 17px; width: 17px; border-radius: 50%; background: white; box-shadow: 0 1px 3px #0003; }
+.customize-row input:checked { background: #175674; }
+.customize-row input:checked:before { left: 18px; }
+.customize-view { display: inline-block; font: 10px var(--mono); padding: 6px 0; color: #175674; }
+#menu-toggle-slot { width: 46px; height: 46px; flex-shrink: 0; }
+#menu-toggle.menu-close { position: relative; display: flex; width: 46px; height: 46px; background: var(--blue); color: var(--ink); }
+#menu-toggle.menu-close span { position: absolute; margin: 0; width: 20px; transform: rotate(45deg); }
+#menu-toggle.menu-close span:last-child { transform: rotate(-45deg); align-self: auto; }
+html[data-motion=on] .site-menu[data-phase=closing] .menu-links>a { animation: none; }
+@media(max-width:700px) {
+  #customize-panel { top: auto; bottom: 76px; max-height: 50svh; right: 12px; width: calc(100vw - 24px); padding: 18px; }
+  #customize-toggle { right: 14px; bottom: 14px; }
+  #menu-toggle-slot { width: 44px; height: 44px; }
+  #menu-toggle.menu-close { width: 44px; height: 44px; }
+}

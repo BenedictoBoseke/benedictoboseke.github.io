@@ -6,7 +6,9 @@ A static GitHub Pages portfolio with original blue WebGL sculptures, real public
 
 Requires Node.js 18+. Run `npm start`, then open http://127.0.0.1:4173 . Set `PORT` to choose another port. Use HTTP rather than opening index.html directly, because native ES modules need a server.
 
-All experiments are enabled in `scripts/features.js`. Change a flag to `false` and reload. Optional sections and their menu links are removed together; disabling the carousel restores a regular project grid. See [FEATURES.md](FEATURES.md) for the numbered inventory and REA reference mapping.
+Click **Customize ✳** at the bottom right to toggle all 19 optional features live. The panel stays open beside the page, with All on, All off, Reset, and View links. Your temporary choices persist only in this browser. Optional sections and their menu links are removed together; disabling the carousel restores a regular project grid. Unrelated changes preserve the selected project filter and sculpture without replaying heading entrances.
+
+Source defaults remain in `scripts/features.js`. Set `customizationEnabled = false` to remove the temporary tools and ignore saved preview settings. See [FEATURES.md](FEATURES.md) for the numbered inventory and REA reference mapping.
 
 ## Structure
 
@@ -14,6 +16,7 @@ All experiments are enabled in `scripts/features.js`. Change a flag to `false` a
 - `style/home.css`: responsive design, typography, project illustrations, and motion.
 - `style/scenes.css`: scene containers and static artwork.
 - `scripts/features.js`: feature switches and persistent motion preference.
+- `scripts/customize.js` and `style/customize.css`: temporary live customization panel.
 - `scripts/experience.js`: menu, section transitions, text/reveal effects, pointer trail, progress, and clock.
 - `scripts/scenes.js`: original native WebGL geometry, lighting, interaction, and lifecycle.
 - `scripts/portfolio.js`: project filters/carousel/dialogs and copy-link action.

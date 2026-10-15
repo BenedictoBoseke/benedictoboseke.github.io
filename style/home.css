@@ -1170,9 +1170,7 @@ html[data-motion=on] [data-reveal].is-revealed {
   width: 51%;
   right: 2%
 }
-html[data-motion=on] .site-menu[open] {
-  animation: menu-enter .35s cubic-bezier(.2,.7,.2,1) both
-}
+/* The same Web Animations ellipse is used for opening and closing the dialog. */
 html[data-motion=on] .site-menu[open] .menu-links>a {
   animation: word-enter .45s both
 }

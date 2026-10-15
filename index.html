@@ -8,7 +8,7 @@
   <meta property="og:description" content="Code, curiosity, and a few things I've made. A personal website from Indonesia.">
   <meta property="og:url" content="https://benedictoboseke.github.io/">
   <title>Benedicto Boseke — A work in progress</title>
-  <link rel="stylesheet" href="style/scenes.css"><link rel="stylesheet" href="style/home.css">
+  <link rel="stylesheet" href="style/scenes.css"><link rel="stylesheet" href="style/home.css"><link rel="stylesheet" href="style/customize.css">
   <link rel="icon" href="asset/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="asset/apple-touch-icon.png">
   <link rel="manifest" href="asset/site.webmanifest"><script type="module" src="scripts/main.js"></script>
 </head>
@@ -20,7 +20,7 @@
     <div class="header-actions"><button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false" hidden>Motion: off</button><a class="button button-small header-connect" href="#connect" data-magnetic>LET'S CONNECT <span aria-hidden="true">↗</span></a><button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open navigation menu" data-feature="overlayMenu" hidden><span></span><span></span></button></div>
   </header>
   <dialog id="site-menu" class="site-menu" aria-labelledby="menu-title">
-    <div class="menu-top"><a class="site-brand" href="#home" data-menu-link>bb.</a><span id="menu-title" class="eyebrow">FIND YOUR WAY</span><button class="menu-close icon-button" type="button" aria-label="Close navigation menu">×</button></div>
+    <div class="menu-top"><a class="site-brand" href="#home" data-menu-link>bb.</a><span id="menu-title" class="eyebrow">FIND YOUR WAY</span><div id="menu-toggle-slot"></div></div>
     <nav class="menu-links" aria-label="Main navigation">
       <a href="#home" data-menu-link data-preview="A work in progress."><small>01</small>Home<span>↗</span></a>
       <a href="#work" data-menu-link data-preview="A few things I've made."><small>02</small>Selected work<span>↗</span></a>
@@ -87,6 +87,13 @@
   <footer id="site-footer" class="site-footer"><a class="site-brand" href="#home" aria-label="Back to home">bb.</a><p>© <span id="copyright-year">2026</span> Benedicto Boseke</p><span class="footer-clock" data-feature="localClock">INDONESIA / <output id="local-clock" aria-label="Current time in Jakarta">UTC+7</output></span><a href="#home" id="back-to-top" data-feature="backToTop">BACK TO TOP ↑</a></footer>
   <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title"><button class="project-dialog-close icon-button" type="button" aria-label="Close project details">×</button><p class="eyebrow" id="project-dialog-meta"></p><h2 id="project-dialog-title"></h2><p id="project-dialog-description"></p><dl class="project-facts"><div><dt>LANGUAGE</dt><dd id="project-dialog-language"></dd></div><div><dt>REPOSITORY CREATED</dt><dd id="project-dialog-date"></dd></div></dl><a id="project-dialog-link" class="button" target="_blank" rel="noopener noreferrer">VIEW THE SOURCE <span aria-hidden="true">↗</span></a></dialog>
   <div id="transition-curtain" aria-hidden="true"><span class="curtain-word">bb.</span></div><canvas id="pointer-trail" aria-hidden="true" data-feature="pointerTrail"></canvas>
+  <button id="customize-toggle" type="button" aria-controls="customize-panel" aria-expanded="false" hidden>Customize ✳</button>
+  <aside id="customize-panel" aria-labelledby="customize-title" hidden>
+    <div class="customize-heading"><div><span class="tiny-label">TEMPORARY PREVIEW TOOLS</span><h2 id="customize-title">Make it yours.</h2></div><button id="customize-close" type="button" aria-label="Close customization">×</button></div>
+    <p class="customize-intro">Toggle features to see changes instantly. Settings stay in this browser; Reset brings back the default version.</p>
+    <div class="customize-actions"><button id="features-on" type="button">All on</button><button id="features-off" type="button">All off</button><button id="features-reset" type="button">Reset</button></div>
+    <p id="customize-status" role="status" aria-live="polite"></p><div id="customize-options"></div>
+  </aside>
   <noscript><p class="noscript-note">All project and social links work without JavaScript. Interactive studies, filtering, and the menu are available when JavaScript is enabled.</p></noscript>
 </body>
 </html>

@@ -4,7 +4,7 @@ let disposePrevious;
 
 // Original, dependency-free interpretations of the reference site's motion mechanics.
 // Every enhancement is optional; semantic content and ordinary links work without it.
-export function initExperience() {
+export function initExperience({ animateHeadings = true } = {}) {
   disposePrevious?.();
   const controller = new AbortController();
   const { signal } = controller;
@@ -17,10 +17,20 @@ export function initExperience() {
 
   const menu = byId('site-menu');
   const menuButton = byId('menu-toggle');
+  const menuSlot = byId('menu-toggle-slot');
+  const menuHome = document.createComment('menu-toggle-home');
+  menuButton?.after(menuHome);
+  let menuAnimation = null;
+  let menuClosing = false;
+  let closePromise = null;
+  let resolveClose = null;
+  let returnMenuFocus = true;
   let lockedScroll = 0;
   let savedOverflow = '';
   let menuLocked = false;
   const releaseMenu = () => {
+    if (menuHome.parentNode && menuButton && menuButton.nextSibling !== menuHome) menuHome.before(menuButton);
+    menuButton?.classList.remove('menu-close');
     root.classList.remove('menu-open');
     menuButton?.setAttribute('aria-expanded', 'false');
     menuButton?.setAttribute('aria-label', 'Open navigation menu');
@@ -31,28 +41,72 @@ export function initExperience() {
       if (Math.abs(window.scrollY - lockedScroll) > 1) window.scrollTo({ top: lockedScroll, behavior: 'instant' });
     }
   };
-  const closeMenu = () => {
+  const finishClose = () => {
+    menuAnimation?.cancel();
+    menuAnimation = null;
+    menuClosing = false;
+    if (menu) { menu.style.clipPath = ''; delete menu.dataset.phase; }
     if (menu?.open) menu.close();
-    // Do this synchronously: an anchor's default scroll must run after unlock.
     releaseMenu();
+    if (returnMenuFocus && !menuButton?.hidden) menuButton?.focus({ preventScroll: true });
+    resolveClose?.(true);
+    resolveClose = null;
+    closePromise = null;
+  };
+  const closeMenu = ({ immediate = false, restoreFocus = true } = {}) => {
+    returnMenuFocus = restoreFocus;
+    if (!menu?.open) { releaseMenu(); return Promise.resolve(true); }
+    if (immediate || !motionEnabled() || typeof menu.animate !== 'function') { finishClose(); return Promise.resolve(true); }
+    if (menuClosing) return closePromise;
+    const current = getComputedStyle(menu).clipPath;
+    menuAnimation?.cancel();
+    menuClosing = true;
+    menu.dataset.phase = 'closing';
+    closePromise = new Promise(resolve => { resolveClose = resolve; });
+    menuAnimation = menu.animate([
+      { clipPath: current === 'none' ? 'ellipse(150% 150% at 100% 0%)' : current },
+      { clipPath: 'ellipse(0% 0% at 100% 0%)' },
+    ], { duration: 350, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' });
+    menuAnimation.finished.then(finishClose, () => {});
+    return closePromise;
   };
   const openMenu = () => {
-    if (!menu || menu.open || typeof menu.showModal !== 'function') return;
-    lockedScroll = window.scrollY;
-    savedOverflow = root.style.overflow;
-    menu.showModal();
+    if (!menu || (menu.open && !menuClosing) || typeof menu.showModal !== 'function') return;
+    const wasOpen = menu.open;
+    const current = wasOpen ? getComputedStyle(menu).clipPath : 'ellipse(0% 0% at 100% 0%)';
+    menuAnimation?.cancel();
+    menuAnimation = null;
+    resolveClose?.(false);
+    resolveClose = null;
+    closePromise = null;
+    menuClosing = false;
+    if (!wasOpen) {
+      lockedScroll = window.scrollY;
+      savedOverflow = root.style.overflow;
+      menuSlot?.append(menuButton);
+      menuButton?.classList.add('menu-close');
+      menu.showModal();
+    }
+    menu.dataset.phase = 'opening';
     root.style.overflow = 'hidden';
     menuLocked = true;
     root.classList.add('menu-open');
     menuButton?.setAttribute('aria-expanded', 'true');
     menuButton?.setAttribute('aria-label', 'Close navigation menu');
+    menuButton?.focus({ preventScroll: true });
+    if (motionEnabled() && typeof menu.animate === 'function') {
+      menuAnimation = menu.animate([
+        { clipPath: current === 'none' ? 'ellipse(150% 150% at 100% 0%)' : current },
+        { clipPath: 'ellipse(150% 150% at 100% 0%)' },
+      ], { duration: 350, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'both' });
+      menuAnimation.finished.then(() => { if (!menuClosing) menu.dataset.phase = 'open'; }, () => {});
+    } else menu.dataset.phase = 'open';
   };
   if (features.overlayMenu && menu && typeof menu.showModal === 'function') {
     if (menuButton) menuButton.hidden = false;
-    listen(menuButton, 'click', () => menu.open ? closeMenu() : openMenu());
-    listen(menu.querySelector('.menu-close'), 'click', closeMenu);
-    listen(menu, 'close', releaseMenu);
-    listen(menu, 'cancel', () => { releaseMenu(); });
+    listen(menuButton, 'click', () => menu.open && !menuClosing ? closeMenu() : openMenu());
+    listen(menu, 'close', () => { if (!menu.open) releaseMenu(); });
+    listen(menu, 'cancel', event => { event.preventDefault(); void closeMenu(); });
     listen(menu, 'click', (event) => {
       if (event.target !== menu) return;
       const rect = menu.getBoundingClientRect();
@@ -65,7 +119,7 @@ export function initExperience() {
       listen(link, 'focus', updatePreview);
     });
   } else if (menuButton) menuButton.hidden = true;
-  cleanups.push(closeMenu);
+  cleanups.push(() => { void closeMenu({ immediate: true, restoreFocus: false }); menuHome.remove(); });
 
   const destinationFor = (link) => {
     if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return null;
@@ -127,12 +181,23 @@ export function initExperience() {
     }
     if (generation === transitionGeneration) cancelTransition();
   };
-  listen(document, 'click', (event) => {
+  listen(document, 'click', async (event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
     const destination = destinationFor(link);
     if (!destination) return;
-    if (menu?.contains(link)) closeMenu();
+    if (menu?.contains(link)) {
+      event.preventDefault();
+      const closed = await closeMenu({ restoreFocus: false });
+      if (!closed || signal.aborted) return;
+      if (features.sectionTransitions && motionEnabled()) await transitionTo(destination);
+      else {
+        if (location.hash !== destination.hash) history.pushState(null, '', destination.hash);
+        destination.element.scrollIntoView({ behavior: features.smoothScroll && motionEnabled() ? 'smooth' : 'instant', block: 'start' });
+        focusSection(destination.element);
+      }
+      return;
+    }
     if (features.sectionTransitions && motionEnabled()) {
       event.preventDefault();
       void transitionTo(destination);
@@ -140,7 +205,7 @@ export function initExperience() {
   });
   listen(window, 'popstate', () => {
     cancelTransition();
-    closeMenu();
+    void closeMenu({ immediate: true });
     // Let the browser restore its saved scroll position on Back/Forward.
     // Native fragment navigation still resolves the correct target when needed.
   });
@@ -182,6 +247,7 @@ export function initExperience() {
           span.dataset.splitWord = '';
           if (semanticHeading) span.setAttribute('aria-hidden', 'true');
           span.style.setProperty('--word-index', wordIndex++);
+          if (!animateHeadings) span.style.animation = 'none';
           span.textContent = part;
           fragment.append(span);
         });
@@ -359,6 +425,7 @@ export function initExperience() {
   const clock = byId('local-clock');
   let clockInterval;
   if (features.localClock && clock) {
+    clock.hidden = false;
     const formatter = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', hour12: false });
     const updateClock = () => {
       const value = formatter.format(new Date());
@@ -383,6 +450,8 @@ export function initExperience() {
       motionToggle.setAttribute('aria-label', prefersReducedMotion() ? 'Reduced motion follows your device preference' : enabled ? 'Pause decorative motion' : 'Resume decorative motion');
     }
     if (!enabled) {
+      if (menuClosing) finishClose();
+      else { menuAnimation?.cancel(); menuAnimation = null; }
       // Changing motion preferences mid-curtain must still honor the clicked link.
       const requested = pendingDestination;
       cancelTransition();

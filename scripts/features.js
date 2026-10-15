@@ -1,5 +1,7 @@
-// Flip a flag to remove an experiment without untangling the rest of the site.
-export const features = Object.freeze({
+// Set this false to remove the temporary customizer and ignore browser overrides.
+export const customizationEnabled = true;
+// Source defaults stay separate from this browser's temporary preview settings.
+export const featureDefaults = Object.freeze({
   overlayMenu: true,
   sectionTransitions: true,
   splitHeadings: true,
@@ -20,6 +22,33 @@ export const features = Object.freeze({
   localClock: true,
   backToTop: true,
 });
+
+export const features = { ...featureDefaults };
+const previewStorageKey = 'bb-feature-preview-v1';
+if (customizationEnabled) {
+  try {
+    const saved = JSON.parse(localStorage.getItem(previewStorageKey) || '{}');
+    for (const key of Object.keys(featureDefaults)) {
+      if (typeof saved?.[key] === 'boolean') features[key] = saved[key];
+    }
+  } catch { /* Corrupt or unavailable storage keeps source defaults. */ }
+}
+export function setFeatures(values) {
+  const changed = [];
+  for (const key of Object.keys(featureDefaults)) {
+    if (typeof values[key] === 'boolean' && features[key] !== values[key]) {
+      features[key] = values[key];
+      changed.push(key);
+    }
+  }
+  if (!changed.length) return;
+  try { localStorage.setItem(previewStorageKey, JSON.stringify(features)); } catch { /* Session-only preview still works. */ }
+  window.dispatchEvent(new CustomEvent('portfolio:featureschange', { detail: { changed } }));
+}
+export function resetFeatures() {
+  setFeatures(featureDefaults);
+  try { localStorage.removeItem(previewStorageKey); } catch { /* Defaults already applied. */ }
+}
 
 const media = window.matchMedia('(prefers-reduced-motion: reduce)');
 let paused = false;

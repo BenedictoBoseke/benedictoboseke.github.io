@@ -35,6 +35,7 @@ try {
   for (let index = 0; index < 12; index++) await page.keyboard.press('Tab');
   check(await page.evaluate(() => document.activeElement.closest('#site-menu') !== null), 'Keyboard focus stays inside the menu');
   await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#site-menu').open);
   check(await page.locator('#menu-toggle').evaluate(el => el === document.activeElement), 'Escape closes menu and restores opener focus');
   await page.locator('#menu-toggle').click();
   await page.locator('[data-menu-link][href="#work"]').click();
@@ -149,7 +150,7 @@ try {
   });
   await ready(trimmed.page);
   check(await trimmed.page.locator('#objects').isHidden() && await trimmed.page.locator('#timeline').isHidden(), 'Feature flags hide optional sections');
-  check(await trimmed.page.locator('[href="#objects"]').isHidden(), 'Trimming a section also removes its navigation link');
+  check(await trimmed.page.locator('[href="#objects"]:visible').count() === 0, 'Trimming a section also removes its navigation links');
   check(await trimmed.page.locator('#project-rail').evaluate(el => el.classList.contains('is-grid')), 'Disabling carousel restores a regular project grid');
   check(await trimmed.page.locator('.project-card:not([hidden])').count() === 6, 'Feature trimming preserves project content');
   await trimmed.context.close();
