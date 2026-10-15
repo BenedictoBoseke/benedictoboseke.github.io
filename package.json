@@ -1,0 +1,11 @@
+{
+  "name": "benedictoboseke-personal-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "check": "node --check scripts/main.js && node --check scripts/features.js && node --check scripts/experience.js && node --check scripts/scenes.js && node --check scripts/portfolio.js && node --check scripts/projects.js && node --check scripts/customize.js",
+    "test": "node tests/browser.mjs && node tests/customization.mjs"
+  },
+  "devDependencies": { "playwright-core": "1.58.2" }
+}
