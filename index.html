@@ -1,56 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-motion="off">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benedicto Boseke</title>
-    <link rel="stylesheet" href="style/home.css">
-    <link rel="stylesheet" href="style/space.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Montserrat+Alternates&display=swap"
-        rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="asset/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="asset/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="asset/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <script src="https://kit.fontawesome.com/1c6db87bd9.js" crossorigin="anonymous"></script>
-
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f0eee7">
+  <meta name="description" content="Benedicto Boseke's personal corner of the web. Projects in web development and Python, interactive experiments, and ways to connect.">
+  <meta property="og:title" content="Benedicto Boseke — A work in progress"><meta property="og:type" content="website">
+  <meta property="og:description" content="Code, curiosity, and a few things I've made. A personal website from Indonesia.">
+  <meta property="og:url" content="https://benedictoboseke.github.io/">
+  <title>Benedicto Boseke — A work in progress</title>
+  <link rel="stylesheet" href="style/scenes.css"><link rel="stylesheet" href="style/home.css">
+  <link rel="icon" href="asset/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="asset/apple-touch-icon.png">
+  <link rel="manifest" href="asset/site.webmanifest"><script type="module" src="scripts/main.js"></script>
 </head>
-
 <body>
-    <header>
-        <nav class="nav-content">
-            <ul>
-                <li><a href="#">benedicto boseke</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="wrapper">
-        <div class="content">
-            <h1 class="title">
-                <span class="holder-content first">
-                    thanks for stopping by
-                </span>
-                <br>
-                <span class="holder-content third">
-                    check out my social below
-                </span>
-            </h1>
-        </div>
-        <div class="socials">
-            <a href="https://github.com/BenedictoBoseke" target="_blank" rel="noopener noreferrer"><i
-                    class="fa-brands fa-github fa-xl" style="color: #c2e4f0;"></i></a>
-            <a href="https://www.linkedin.com/in/benedictoruatta/" target="_blank" rel="noopener noreferrer"><i
-                    class="fa-brands fa-linkedin fa-xl" style="color: #c2e4f0;"></i></a>
-            <a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram fa-xl"
-                    style="color: #c2e4f0;"></i></a>
-
-        </div>
-    </div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div id="reading-progress" aria-hidden="true" data-feature="readingProgress"></div>
+  <header id="site-header" class="site-header" data-theme="light">
+    <a class="site-brand" href="#home" aria-label="Benedicto Boseke, home">bb<span>.</span></a><span class="header-caption">A WORK IN PROGRESS</span>
+    <div class="header-actions"><button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false" hidden>Motion: off</button><a class="button button-small header-connect" href="#connect" data-magnetic>LET'S CONNECT <span aria-hidden="true">↗</span></a><button id="menu-toggle" class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open navigation menu" data-feature="overlayMenu" hidden><span></span><span></span></button></div>
+  </header>
+  <dialog id="site-menu" class="site-menu" aria-labelledby="menu-title">
+    <div class="menu-top"><a class="site-brand" href="#home" data-menu-link>bb.</a><span id="menu-title" class="eyebrow">FIND YOUR WAY</span><button class="menu-close icon-button" type="button" aria-label="Close navigation menu">×</button></div>
+    <nav class="menu-links" aria-label="Main navigation">
+      <a href="#home" data-menu-link data-preview="A work in progress."><small>01</small>Home<span>↗</span></a>
+      <a href="#work" data-menu-link data-preview="A few things I've made."><small>02</small>Selected work<span>↗</span></a>
+      <a href="#about" data-menu-link data-preview="The person behind the tabs."><small>03</small>A little context<span>↗</span></a>
+      <a href="#objects" data-menu-link data-preview="Three shapes. Room to play." data-feature="objectShowcase"><small>04</small>The playground<span>↗</span></a>
+      <a href="#timeline" data-menu-link data-preview="A public trail of projects." data-feature="timeline"><small>05</small>The journey<span>↗</span></a>
+      <a href="#connect" data-menu-link data-preview="Good things start with hello."><small>06</small>Say hello<span>↗</span></a>
+    </nav>
+    <div class="menu-bottom"><p class="menu-preview" data-menu-preview>A work in progress.</p><div class="inline-links"><a href="https://github.com/BenedictoBoseke" target="_blank" rel="noopener noreferrer" >GitHub ↗</a><a href="https://www.linkedin.com/in/benedictoruatta/" target="_blank" rel="noopener noreferrer" >LinkedIn ↗</a></div></div>
+  </dialog>
+  <main id="main-content">
+    <section id="home" class="hero section-light" data-section-theme="light" aria-labelledby="hero-title">
+      <div class="hero-topline eyebrow"><span>BENEDICTO BOSEKE / PERSONAL WEBSITE</span><span>BASED IN INDONESIA <i class="status-dot" aria-hidden="true"></i></span></div>
+      <div id="hero-stage" class="scene-stage hero-stage" tabindex="0" role="img" aria-label="Interactive blue orbit sculpture. Drag or use arrow keys to rotate." data-feature="heroScene"><div class="scene-fallback" aria-hidden="true"><span>bb.</span></div><canvas id="hero-canvas" aria-hidden="true"></canvas></div>
+      <h1 id="hero-title" class="hero-title" aria-label="Benedicto Boseke"><span class="hero-first" data-split>Benedicto</span><span class="hero-last" data-split>Boseke<span class="blue-period">.</span></span></h1>
+      <div class="hero-bottom"><div class="hero-intro"><p>Code. Curiosity.<br>A work in progress.</p><a href="#work" class="button" data-magnetic>EXPLORE MY WORK <span aria-hidden="true">↗</span></a></div><div class="hero-note"><span class="tiny-label">A SMALL CORNER OF THE INTERNET.</span><p>Thanks for stopping by.<br>Have a look around.</p></div><div class="hero-controls" data-feature="heroScene"><button id="hero-reset" class="text-button" type="button" hidden>RESET THE ORBIT ↺</button><span id="hero-scene-status" class="scene-status">DRAG TO EXPLORE</span></div></div>
+      <div class="section-end eyebrow"><span>01 / HELLO, WORLD</span><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+    </section>
+    <div class="marquee-band" aria-hidden="true" data-feature="marquees"><div class="marquee-track" data-marquee><span>ALWAYS A WORK IN PROGRESS <i>✳</i> ALWAYS A LITTLE CURIOUS <i>✳</i></span><span>ALWAYS A WORK IN PROGRESS <i>✳</i> ALWAYS A LITTLE CURIOUS <i>✳</i></span></div></div>
+    <section id="work" class="work-section section-pad section-light" data-section-theme="light" aria-labelledby="work-title">
+      <div class="section-top eyebrow" data-reveal><span>02 / SELECTED WORK</span><span>FROM THE PUBLIC REPOSITORIES</span></div>
+      <div class="section-heading"><h2 id="work-title" data-split>A few things<br><em>I've made.</em></h2><p data-reveal>Small beginnings, different tools.<br>A selection of projects from my GitHub.</p></div>
+      <div class="work-toolbar" data-reveal><div class="filters" role="group" aria-label="Filter projects" data-feature="projectFilters" hidden><button type="button" data-filter="all" aria-pressed="true">All <sup>06</sup></button><button type="button" data-filter="web" aria-pressed="false">Web</button><button type="button" data-filter="python" aria-pressed="false">Python</button></div><div class="rail-controls" data-feature="projectCarousel" hidden><span id="rail-status" class="tiny-label" aria-live="polite">01 / 06</span><button id="rail-prev" class="icon-button" type="button" aria-label="Previous projects">←</button><button id="rail-next" class="icon-button" type="button" aria-label="Next projects">→</button></div></div>
+      <p id="filter-status" class="sr-only" role="status" aria-live="polite">Showing 6 projects.</p><div id="project-rail" class="project-rail" tabindex="0" aria-label="Selected projects. Scroll horizontally to explore."><article class="project-card" data-category="web" data-project="tvshowapi">
+  <a href="https://github.com/BenedictoBoseke/tvshowapi" target="_blank" rel="noopener noreferrer" class="project-art art-tv" aria-label="TV Show Finder repository on GitHub"><span class="art-label">01 / WEB EXPERIMENT</span><div class="art-type" aria-hidden="true">PLAY<br><em>something.</em></div><span class="art-bottom">TMDB API / HTML</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/tvshowapi" target="_blank" rel="noopener noreferrer" >TV Show Finder</a></h3><p>An API-powered way to find something to watch.</p></div><button type="button" class="detail-button" data-project-open="tvshowapi" aria-label="Read about TV Show Finder" data-feature="projectDetails" hidden>+</button></div></article>
+<article class="project-card" data-category="python" data-project="machine-learning-skripsi">
+  <a href="https://github.com/BenedictoBoseke/machine-learning-skripsi" target="_blank" rel="noopener noreferrer" class="project-art art-ml" aria-label="Machine Learning repository on GitHub"><span class="art-label">02 / COLLEGE FINAL PROJECT</span><div class="art-type" aria-hidden="true">finding<br><em>patterns.</em></div><span class="art-bottom">PYTHON / MACHINE LEARNING</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/machine-learning-skripsi" target="_blank" rel="noopener noreferrer" >Machine Learning</a></h3><p>A Python repository for my college final project.</p></div><button type="button" class="detail-button" data-project-open="machine-learning-skripsi" aria-label="Read about Machine Learning" data-feature="projectDetails" hidden>+</button></div></article>
+<article class="project-card" data-category="web" data-project="url-shortener">
+  <a href="https://github.com/BenedictoBoseke/url-shortener" target="_blank" rel="noopener noreferrer" class="project-art art-url" aria-label="URL Shortener repository on GitHub"><span class="art-label">03 / WEB ASSIGNMENT</span><div class="art-type" aria-hidden="true"><small>https://a-very-long-address</small><span>↓</span><em>less.link</em></div><span class="art-bottom">PHP / URL SHORTENER</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/url-shortener" target="_blank" rel="noopener noreferrer" >URL Shortener</a></h3><p>A compact-semester assignment at BINUS.</p></div><button type="button" class="detail-button" data-project-open="url-shortener" aria-label="Read about URL Shortener" data-feature="projectDetails" hidden>+</button></div></article>
+<article class="project-card" data-category="web" data-project="webformfileupload">
+  <a href="https://github.com/BenedictoBoseke/webformfileupload" target="_blank" rel="noopener noreferrer" class="project-art art-upload" aria-label="Form &amp; File Upload repository on GitHub"><span class="art-label">04 / WEB UTILITY</span><div class="art-type" aria-hidden="true"><span>↑</span><em>send it.</em></div><span class="art-bottom">PHP / FILE UPLOAD</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/webformfileupload" target="_blank" rel="noopener noreferrer" >Form & File Upload</a></h3><p>A simple email-validation and upload exercise.</p></div><button type="button" class="detail-button" data-project-open="webformfileupload" aria-label="Read about Form &amp; File Upload" data-feature="projectDetails" hidden>+</button></div></article>
+<article class="project-card" data-category="web" data-project="hci-web-design">
+  <a href="https://github.com/BenedictoBoseke/hci-web-design" target="_blank" rel="noopener noreferrer" class="project-art art-hci" aria-label="Human × Computer repository on GitHub"><span class="art-label">05 / WEB DESIGN</span><div class="art-type" aria-hidden="true"><em>human</em><span>↔</span>computer</div><span class="art-bottom">HTML / PHP / INTERACTION</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/hci-web-design" target="_blank" rel="noopener noreferrer" >Human × Computer</a></h3><p>A web design and PHP implementation project.</p></div><button type="button" class="detail-button" data-project-open="hci-web-design" aria-label="Read about Human × Computer" data-feature="projectDetails" hidden>+</button></div></article>
+<article class="project-card" data-category="web" data-project="secprog-school-project">
+  <a href="https://github.com/BenedictoBoseke/secprog-school-project" target="_blank" rel="noopener noreferrer" class="project-art art-security" aria-label="Security Programming repository on GitHub"><span class="art-label">06 / SCHOOL PROJECT</span><div class="art-type" aria-hidden="true"><small>••••••</small>behind<br><em>the login.</em></div><span class="art-bottom">PHP / SIGN-IN & SIGN-UP</span><span class="art-arrow" aria-hidden="true">↗</span></a>
+  <div class="project-caption"><div><h3><a href="https://github.com/BenedictoBoseke/secprog-school-project" target="_blank" rel="noopener noreferrer" >Security Programming</a></h3><p>A school project with sign-in and sign-up pages.</p></div><button type="button" class="detail-button" data-project-open="secprog-school-project" aria-label="Read about Security Programming" data-feature="projectDetails" hidden>+</button></div></article></div>
+      <div class="section-end eyebrow"><span>06 PROJECTS / MANY THINGS TO LEARN</span><a href="https://github.com/BenedictoBoseke?tab=repositories" target="_blank" rel="noopener noreferrer" >ALL REPOSITORIES ↗</a></div>
+    </section>
+    <section id="about" class="about-section section-pad section-dark" data-section-theme="dark" aria-labelledby="about-title">
+      <div class="section-top eyebrow" data-reveal><span>03 / A LITTLE CONTEXT</span><span>THE PERSON BEHIND THE TABS</span></div>
+      <div class="about-layout"><div><h2 id="about-title" data-split>Different tools.<br><em>Same curiosity.</em></h2><p class="about-copy" data-reveal>This started as my first personal project. It's still a place to connect the dots between what I learn and what I make.</p><p class="about-small" data-reveal>Based in Indonesia. My public repositories range from HTML and PHP web projects to a Python college final project. This site brings a few of those threads together.</p><a href="https://github.com/BenedictoBoseke" target="_blank" rel="noopener noreferrer" class="button button-blue" data-magnetic>MEET ME ON GITHUB <span aria-hidden="true">↗</span></a></div>
+      <div class="story-collage" data-feature="storyCollage" data-reveal aria-label="An illustrated collage of code and curiosity"><div class="collage-grid" aria-hidden="true"></div><div class="collage-note"><span class="tiny-label">A NOTE TO SELF</span><p>Stay curious.<br><em>Keep making.</em></p><span class="note-signature">bb.</span></div><div class="collage-code" aria-hidden="true"><span>01 &nbsp; const curiosity = true;</span><span>02 &nbsp; while (curiosity) {</span><span>03 &nbsp; &nbsp; learn();</span><span>04 &nbsp; &nbsp; make();</span><span>05 &nbsp; }</span></div><div class="collage-stamp" aria-hidden="true">MADE OF<br>SMALL<br><em>beginnings.</em></div><span class="collage-caption tiny-label">IDEAS IN DIFFERENT SHAPES.</span></div></div>
+    </section>
+    <section id="objects" class="objects-section section-pad section-dark" data-section-theme="dark" data-feature="objectShowcase" aria-labelledby="objects-title">
+      <div class="section-top eyebrow" data-reveal><span>04 / THE PLAYGROUND</span><span>THREE SHAPES. ROOM TO PLAY.</span></div>
+      <div class="objects-layout"><div class="objects-copy"><h2 id="objects-title" data-split>Room<br><em>to play.</em></h2><p data-reveal>A small detour into shape, light, and interaction. Pick a study. Give it a spin.</p><div class="object-selectors" hidden role="group" aria-label="Choose a 3D study"><button type="button" data-object="orbit" aria-pressed="true"><span>01</span> Orbit <i>↗</i></button><button type="button" data-object="ribbon" aria-pressed="false"><span>02</span> Ribbon <i>↗</i></button><button type="button" data-object="constellation" aria-pressed="false"><span>03</span> Constellation <i>↗</i></button></div></div>
+      <div class="object-display"><div id="object-stage" class="scene-stage object-stage" tabindex="0" role="img" aria-label="Interactive 3D study. Drag or use arrow keys to rotate."><div class="scene-fallback" aria-hidden="true"><span>01</span></div><canvas id="object-canvas" aria-hidden="true"></canvas></div><div class="object-meta"><div><h3 id="object-title">Orbit</h3><p id="object-description">Interlocking paths, a shared center.</p></div><button id="object-reset" class="icon-button" type="button" aria-label="Reset study rotation" hidden>↺</button></div><p id="object-scene-status" class="scene-status">DRAG OR USE ARROW KEYS TO ROTATE</p></div></div>
+      <p class="tiny-label objects-footnote">ORIGINAL PROCEDURAL STUDIES / RENDERED IN YOUR BROWSER</p>
+    </section>
+    <section id="timeline" class="timeline-section section-pad section-light" data-section-theme="light" data-feature="timeline" aria-labelledby="timeline-title">
+      <div class="section-top eyebrow" data-reveal><span>05 / THE JOURNEY</span><span>ONE REPOSITORY AT A TIME</span></div><div class="section-heading"><h2 id="timeline-title" data-split>A public<br><em>trail.</em></h2><p data-reveal>A few milestones from repository creation dates.<br>Small steps, kept on the record.</p></div><ol class="timeline-list"><li data-reveal><time datetime="2022-10">OCT 2022</time><h3>Human × Computer</h3><p>Web design meets PHP implementation.</p><a href="https://github.com/BenedictoBoseke/hci-web-design" target="_blank" rel="noopener noreferrer" aria-label="Human × Computer repository">↗</a></li>
+<li data-reveal><time datetime="2023-04">APR 2023</time><h3>A corner of the internet</h3><p>This personal website repository was created.</p><a href="https://github.com/BenedictoBoseke/benedictoboseke.github.io" target="_blank" rel="noopener noreferrer" aria-label="A corner of the internet repository">↗</a></li>
+<li data-reveal><time datetime="2023-07">JUL 2023</time><h3>Keep it short</h3><p>A URL shortener for a BINUS assignment.</p><a href="https://github.com/BenedictoBoseke/url-shortener" target="_blank" rel="noopener noreferrer" aria-label="Keep it short repository">↗</a></li>
+<li data-reveal><time datetime="2023-08">AUG 2023</time><h3>Forms & files</h3><p>Email validation and file uploads in PHP.</p><a href="https://github.com/BenedictoBoseke/webformfileupload" target="_blank" rel="noopener noreferrer" aria-label="Forms & files repository">↗</a></li>
+<li data-reveal><time datetime="2024-01">JAN 2024</time><h3>Something to watch</h3><p>A simple TV show finder using the TMDB API.</p><a href="https://github.com/BenedictoBoseke/tvshowapi" target="_blank" rel="noopener noreferrer" aria-label="Something to watch repository">↗</a></li></ol>
+    </section>
+    <section id="connect" class="connect-section section-pad section-blue" data-section-theme="light" aria-labelledby="connect-title"><div class="section-top eyebrow" data-reveal><span>06 / SAY HELLO</span><span>GOOD THINGS START WITH A CONVERSATION</span></div><h2 id="connect-title" data-split>Thanks for<br><em>stopping by.</em><span class="connect-asterisk" aria-hidden="true">✳</span></h2><div class="connect-bottom"><p>The next tab is yours.<br>Find me around the internet.</p><div class="contact-links"><a href="https://github.com/BenedictoBoseke" target="_blank" rel="noopener noreferrer" data-magnetic>GitHub <span>↗</span></a><a href="https://www.linkedin.com/in/benedictoruatta/" target="_blank" rel="noopener noreferrer" data-magnetic>LinkedIn <span>↗</span></a><button id="copy-profile" type="button" hidden>Copy site link <span aria-hidden="true">⧉</span></button><span id="copy-status" class="copy-status" role="status" aria-live="polite"></span></div></div></section>
+  </main>
+  <footer id="site-footer" class="site-footer"><a class="site-brand" href="#home" aria-label="Back to home">bb.</a><p>© <span id="copyright-year">2026</span> Benedicto Boseke</p><span class="footer-clock" data-feature="localClock">INDONESIA / <output id="local-clock" aria-label="Current time in Jakarta">UTC+7</output></span><a href="#home" id="back-to-top" data-feature="backToTop">BACK TO TOP ↑</a></footer>
+  <dialog id="project-dialog" class="project-dialog" aria-labelledby="project-dialog-title"><button class="project-dialog-close icon-button" type="button" aria-label="Close project details">×</button><p class="eyebrow" id="project-dialog-meta"></p><h2 id="project-dialog-title"></h2><p id="project-dialog-description"></p><dl class="project-facts"><div><dt>LANGUAGE</dt><dd id="project-dialog-language"></dd></div><div><dt>REPOSITORY CREATED</dt><dd id="project-dialog-date"></dd></div></dl><a id="project-dialog-link" class="button" target="_blank" rel="noopener noreferrer">VIEW THE SOURCE <span aria-hidden="true">↗</span></a></dialog>
+  <div id="transition-curtain" aria-hidden="true"><span class="curtain-word">bb.</span></div><canvas id="pointer-trail" aria-hidden="true" data-feature="pointerTrail"></canvas>
+  <noscript><p class="noscript-note">All project and social links work without JavaScript. Interactive studies, filtering, and the menu are available when JavaScript is enabled.</p></noscript>
 </body>
-
 </html>
